@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">RotraConversation</string>
     <string name="need_new_account">Need New Account</string>
-    <string name="user_name">User Name</string>
+    <string name="registration">Registration</string>
+    <string name="r_i_district_no">R.I. District No.</string>
     <string name="email_id">Email ID</string>
     <string name="password">Password</string>
-    <string name="registration">Registration</string>
+    <string name="user_name">User Name</string>
 </resources>
