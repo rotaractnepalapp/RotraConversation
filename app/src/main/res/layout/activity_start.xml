@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rotaractnepalapp.rotraconversation.MainActivity">
+    tools:context="com.rotaractnepalapp.rotraconversation.StartActivity">
     <TextView
+        android:id="@+id/conversationTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -13,5 +14,15 @@
         android:textStyle="bold|italic"
         android:textSize="24sp"
         android:textColor="@color/colorPrimary"
-        android:text="Welcome To RotraConversation"/>
+        android:text="Let's Start Conversation"/>
+    <Button
+        android:id="@+id/startRegButton"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/conversationTxt"
+        android:layout_centerHorizontal="true"
+        android:text="@string/need_new_account"
+        android:textColor="@android:color/white"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"/>
 </RelativeLayout>
