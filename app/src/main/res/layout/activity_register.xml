@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/display_name"
         android:maxLines="1"
+        android:textStyle="bold"
         android:inputType="text"
         android:textColorHint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/r_i_district_no"
         android:maxLines="1"
+        android:textStyle="bold"
         android:inputType="number"
         android:textColorHint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
@@ -55,6 +57,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/email"
         android:maxLines="1"
+        android:textStyle="bold"
         android:inputType="textEmailAddress|textWebEmailAddress"
         android:textColorHint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
@@ -69,6 +72,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/password"
         android:maxLines="1"
+        android:textStyle="bold"
         android:inputType="textPassword"
         android:textColorHint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
@@ -77,4 +81,14 @@
         app:met_floatingLabel="highlight"
         app:met_primaryColor="@color/colorPrimary"
         app:met_singleLineEllipsis="true"/>
+
+    <Button
+        android:id="@+id/reg_create_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_account"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 </LinearLayout>

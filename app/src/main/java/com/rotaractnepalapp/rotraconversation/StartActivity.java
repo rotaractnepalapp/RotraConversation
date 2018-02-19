@@ -1,6 +1,7 @@
 package com.rotaractnepalapp.rotraconversation;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         mregBtn = (Button) findViewById(R.id.startRegButton);
+        mregBtn.setPaintFlags(mregBtn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
         mregBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,10 +18,12 @@
     <Button
         android:id="@+id/startRegButton"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_below="@id/conversationTxt"
         android:layout_centerHorizontal="true"
         android:text="@string/need_new_account"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textStyle="bold|italic"
         android:textSize="20sp"/>

@@ -3,7 +3,8 @@
     <string name="need_new_account">Need New Account ?</string>
     <string name="r_i_district_no">Rotary International District No.</string>
     <string name="password">Password</string>
-    <string name="registration">Registration</string>
+    <string name="registration"><u>Registration</u></string>
     <string name="display_name">Display Name</string>
     <string name="email">email</string>
+    <string name="create_account">Create Account</string>
 </resources>
