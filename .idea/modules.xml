@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RotraConversation.iml" filepath="$PROJECT_DIR$/RotraConversation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RotraConversation.iml" filepath="$PROJECT_DIR$/.idea/RotraConversation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

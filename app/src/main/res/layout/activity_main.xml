@@ -13,5 +13,5 @@
         android:textStyle="bold|italic"
         android:textSize="24sp"
         android:textColor="@color/colorPrimary"
-        android:text="Welcome To RotraConversation"/>
+        android:text="This is Main Page"/>
 </RelativeLayout>
