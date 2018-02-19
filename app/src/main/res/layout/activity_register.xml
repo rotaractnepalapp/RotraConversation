@@ -22,7 +22,7 @@
             android:textSize="24sp"/>
     </RelativeLayout>
     <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-        android:id="@+id/newUserName"
+        android:id="@+id/reg_display_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user_name"
@@ -36,7 +36,7 @@
         app:met_primaryColor="@color/colorPrimary"
         app:met_singleLineEllipsis="true"/>
     <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-        android:id="@+id/newUserRIDNo"
+        android:id="@+id/reg_ridno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/r_i_district_no"
@@ -50,7 +50,7 @@
         app:met_primaryColor="@color/colorPrimary"
         app:met_singleLineEllipsis="true"/>
     <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-        android:id="@+id/newUserEmail"
+        android:id="@+id/reg_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email_id"
@@ -64,7 +64,7 @@
         app:met_primaryColor="@color/colorPrimary"
         app:met_singleLineEllipsis="true"/>
     <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-        android:id="@+id/newUserPassword"
+        android:id="@+id/reg_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
