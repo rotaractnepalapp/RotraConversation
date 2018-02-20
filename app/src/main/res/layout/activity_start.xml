@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rotaractnepalapp.rotraconversation.StartActivity">
+    tools:context="com.rotaractnepalapp.rotraconversation.StartActivity"
+    android:background="@color/colorPrimaryDark">
     <TextView
         android:id="@+id/conversationTxt"
         android:layout_width="wrap_content"
@@ -13,18 +14,33 @@
         android:layout_centerVertical="true"
         android:textStyle="bold|italic"
         android:textSize="24sp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:text="Let's Start Conversation"/>
     <Button
-        android:id="@+id/startRegButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/startLogInButton"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="#8bc34a"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/conversationTxt"
+        android:layout_centerHorizontal="true"
+        android:text="@string/already_have_account"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/startRegButton"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="@android:color/white"
+        android:layout_below="@id/startLogInButton"
         android:layout_centerHorizontal="true"
         android:text="@string/need_new_account"
         android:textAllCaps="false"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold|italic"
         android:textSize="20sp"/>
 </RelativeLayout>

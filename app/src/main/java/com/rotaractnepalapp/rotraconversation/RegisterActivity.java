@@ -5,9 +5,12 @@ import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText mDisplayName, mRIDno, mEmail, mPassword;
     private Button createBtn;
+    private Toolbar rtoolbar;
 
     private FirebaseAuth mAuth;
 
@@ -34,9 +38,17 @@ public class RegisterActivity extends AppCompatActivity {
         mRIDno = (EditText) findViewById(R.id.reg_ridno);
         mEmail = (EditText) findViewById(R.id.reg_email);
         mPassword = (EditText) findViewById(R.id.reg_password);
+        rtoolbar = (Toolbar) findViewById(R.id.register_toolbar);
         createBtn = (Button) findViewById(R.id.reg_create_btn);
         createBtn.setPaintFlags(createBtn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+        //Toolbar set
+        setSupportActionBar(rtoolbar);
+        getSupportActionBar().setTitle("Create Account");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        //Registration
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
 
-                register_user(display_name, ridno, email, password);
+                if (!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(ridno) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
+
+                    register_user(display_name, ridno, email, password);
+                }
             }
         });
     }
