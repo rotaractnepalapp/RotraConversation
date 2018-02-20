@@ -1,6 +1,8 @@
 package com.rotaractnepalapp.rotraconversation;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Toolbar mtoolbar;
+    private ViewPager mViewPager;
+    private SectionPagerAdapter mSectionPagerAdapter;
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +27,21 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Toolbar
         mtoolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setTitle("Rotra Conversation");
+
+        //Tab
+        mViewPager = (ViewPager) findViewById(R.id.main_tabPager);
+        mSectionPagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mSectionPagerAdapter);
+
+        mTabLayout = (TabLayout) findViewById(R.id.main_tab);
+        mTabLayout.setupWithViewPager(mViewPager);
+        mTabLayout.setSelected(true);
+        mTabLayout.setTabTextColors(getResources().getColor(R.color.colorHintTextLight),
+                getResources().getColor(R.color.colorPrimaryTextLight));
     }
 
     @Override
