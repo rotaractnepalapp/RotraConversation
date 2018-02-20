@@ -24,7 +24,7 @@
             android:textStyle="bold"
             android:layout_margin="5dp"/>
         <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-            android:id="@+id/email"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -40,7 +40,7 @@
             app:met_primaryColor="@color/colorPrimary"
             app:met_singleLineEllipsis="true"/>
         <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-            android:id="@+id/password"
+            android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -58,6 +58,7 @@
         <Button
             android:id="@+id/login_btn"
             style="@style/Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#8bc34a"
             android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

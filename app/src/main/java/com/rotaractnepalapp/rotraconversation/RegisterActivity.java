@@ -10,14 +10,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -56,11 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String ridno = mRIDno.getText().toString();
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
-
-                if (!TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(ridno) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password)){
-
-                    register_user(display_name, ridno, email, password);
-                }
+                register_user(display_name, ridno, email, password);
             }
         });
     }
