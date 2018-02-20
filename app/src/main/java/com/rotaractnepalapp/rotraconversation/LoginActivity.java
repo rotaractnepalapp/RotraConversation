@@ -1,5 +1,6 @@
 package com.rotaractnepalapp.rotraconversation;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private Toolbar ltoolbar;
     private EditText loginEmail, loginPassword;
     private Button loginBtn;
+    private ProgressDialog mloginProgress;
 
     private FirebaseAuth mAuth;
 
@@ -28,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mloginProgress = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -48,6 +52,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = loginEmail.getEditableText().toString();
                 String password = loginPassword.getEditableText().toString();
+
+                mloginProgress.setTitle("Rotra Conversation");
+                mloginProgress.setMessage("User Login");
+                mloginProgress.setCanceledOnTouchOutside(false);
+                mloginProgress.show();
                 loginUser(email, password);
             }
         });
@@ -58,12 +67,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    mloginProgress.dismiss();
                     Toast.makeText(LoginActivity.this,"Sucessful LogIn",Toast.LENGTH_LONG).show();
                     Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(mainIntent);
                     finish();
                 }else {
+                    mloginProgress.hide();
                     Toast.makeText(LoginActivity.this,"Cannot Sign In Please Check your from and try it",Toast.LENGTH_LONG).show();
                 }
             }

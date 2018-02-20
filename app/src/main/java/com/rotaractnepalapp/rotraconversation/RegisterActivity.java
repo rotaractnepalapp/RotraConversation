@@ -1,5 +1,6 @@
 package com.rotaractnepalapp.rotraconversation;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mDisplayName, mRIDno, mEmail, mPassword;
     private Button createBtn;
     private Toolbar rtoolbar;
+    private ProgressDialog mRegProgress;
 
     private FirebaseAuth mAuth;
 
@@ -28,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mRegProgress = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -53,6 +57,11 @@ public class RegisterActivity extends AppCompatActivity {
                 String ridno = mRIDno.getText().toString();
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
+
+                mRegProgress.setTitle("Registering User");
+                mRegProgress.setMessage("Please wait while we create your account");
+                mRegProgress.setCanceledOnTouchOutside(false);
+                mRegProgress.show();
                 register_user(display_name, ridno, email, password);
             }
         });
@@ -63,12 +72,14 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    mRegProgress.dismiss();
                     Toast.makeText(RegisterActivity.this,"Sucessful Register",Toast.LENGTH_LONG).show();
                     Intent mainIntent = new Intent(RegisterActivity.this,MainActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(mainIntent);
                     finish();
                 }else {
+                    mRegProgress.hide();
                     Toast.makeText(RegisterActivity.this,"You got some error",Toast.LENGTH_LONG).show();
                 }
             }
