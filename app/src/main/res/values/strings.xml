@@ -13,6 +13,6 @@
     <string name="login_your_account">Login Your Account</string>
     <string name="log_in">Log In</string>
     <string name="account_setting">Account Setting</string>
-    <string name="hi_there_i_m_using_rotra_conversation">Hi there, I\'m using Rotra Conversation</string>
+    <string name="default_status">Hi there, I\'m using Rotra Conversation</string>
     <string name="change_an_image">Change an Image</string>
 </resources>
