@@ -1,7 +1,10 @@
 package com.rotaractnepalapp.rotraconversation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,8 @@ public class SettingsActivity extends AppCompatActivity {
     //for layout
     private CircleImageView mImage;
     private TextView mName, mRIDNo, mStatus;
+    private Button mStatusBtn, mImageBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,9 @@ public class SettingsActivity extends AppCompatActivity {
         mName = (TextView) findViewById(R.id.setting_display_name);
         mRIDNo = (TextView) findViewById(R.id.setting_ridno);
         mStatus = (TextView) findViewById(R.id.setting_status);
+
+        mStatusBtn = (Button) findViewById(R.id.setting_status_btn);
+        mImageBtn = (Button) findViewById(R.id.setting_image_btn);
 
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
@@ -57,6 +65,18 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        mStatusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String status_value = mStatus.getText().toString();
+
+                Intent statusIntent = new Intent(SettingsActivity.this,StatusActivity.class);
+                statusIntent.putExtra("status", status_value);
+                startActivity(statusIntent);
             }
         });
     }
