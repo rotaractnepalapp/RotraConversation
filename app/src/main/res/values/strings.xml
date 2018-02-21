@@ -15,4 +15,6 @@
     <string name="account_setting">Account Setting</string>
     <string name="default_status">Hi there, I\'m using Rotra Conversation</string>
     <string name="change_an_image">Change an Image</string>
+    <string name="type_your_status">Type your status</string>
+    <string name="update_status">Update Status</string>
 </resources>
