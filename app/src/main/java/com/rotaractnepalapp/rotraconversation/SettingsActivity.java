@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -79,6 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
                 mName.setText(name);
                 mRIDNo.setText(ridno);
                 mStatus.setText(status);
+                Picasso.with(SettingsActivity.this).load(image).into(mImage);
 
             }
 
@@ -110,10 +112,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                 startActivityForResult(Intent.createChooser(gallaryIntent, "SELECT IMAGE"),GALLERY_PICK);
 
-                /*// start picker to get image for cropping and then use the image in cropping activity
-                CropImage.activity()
-                        .setGuidelines(CropImageView.Guidelines.ON)
-                        .start(SettingsActivity.this);*/
             }
         });
     }

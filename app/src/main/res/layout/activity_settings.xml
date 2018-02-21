@@ -8,8 +8,8 @@
     android:background="@color/colorPrimaryDark">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setting_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/default_avatar"
         android:tint="@android:color/white"
         app:civ_border_color="@android:color/white"
@@ -21,7 +21,7 @@
         android:id="@+id/setting_display_name"
         android:layout_below="@id/setting_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
