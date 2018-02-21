@@ -1,5 +1,6 @@
 package com.rotaractnepalapp.rotraconversation;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -43,6 +44,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     //storage firebase
     private StorageReference mImageStorage;
+
+    private ProgressDialog mImageLoadProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,15 +135,39 @@ public class SettingsActivity extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
+
+                mImageLoadProgress = new ProgressDialog(SettingsActivity.this);
+                mImageLoadProgress.setTitle("Uploading Image...");
+                mImageLoadProgress.setMessage("Please wait while we upload and process an imaage.");
+                mImageLoadProgress.setCanceledOnTouchOutside(false);
+                mImageLoadProgress.show();
+
                 Uri resultUri = result.getUri();
-                StorageReference filepath = mImageStorage.child("profile_images").child(random() + ".jpg");
+
+                String current_user_id = mCurrentUser.getUid();
+
+                StorageReference filepath = mImageStorage.child("profile_images").child(current_user_id + ".jpg");
                 filepath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(SettingsActivity.this,"Uploaded",Toast.LENGTH_LONG).show();
+
+                            //get and store image url in database
+                            String download_url = task.getResult().getDownloadUrl().toString();
+
+                            mUserDatabase.child("image").setValue(download_url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        mImageLoadProgress.dismiss();
+                                        Toast.makeText(SettingsActivity.this,"Success Uploading",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+
                         }else {
                             Toast.makeText(SettingsActivity.this,"Error in Uploading",Toast.LENGTH_LONG).show();
+                            mImageLoadProgress.dismiss();
                         }
                     }
                 });
