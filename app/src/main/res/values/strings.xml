@@ -17,4 +17,5 @@
     <string name="change_an_image">Change an Image</string>
     <string name="type_your_status">Type your status</string>
     <string name="update_status">Update Status</string>
+    <string name="all_users">All users</string>
 </resources>
