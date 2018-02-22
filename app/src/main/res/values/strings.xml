@@ -18,4 +18,6 @@
     <string name="type_your_status">Type your status</string>
     <string name="update_status">Update Status</string>
     <string name="all_users">All users</string>
+    <string name="current_user_status">Current User Status</string>
+    <string name="total_friends">Total friends</string>
 </resources>
