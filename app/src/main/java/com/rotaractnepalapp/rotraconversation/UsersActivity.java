@@ -1,5 +1,6 @@
 package com.rotaractnepalapp.rotraconversation;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,6 +59,8 @@ public class UsersActivity extends AppCompatActivity {
                 UsersViewHolder.setName(model.getName());
                 UsersViewHolder.setStatus(model.getStatus());
                 UsersViewHolder.setRIDNo(model.getRidno());
+
+                UsersViewHolder.setUserImage(model.getThumb_image(), getApplicationContext());
             }
         };
 
@@ -88,6 +91,10 @@ public class UsersActivity extends AppCompatActivity {
         public static void setRIDNo(String ridno){
             TextView userRIDNoView = (TextView) mView.findViewById(R.id.user_single_ridno);
             userRIDNoView.setText(ridno);
+        }
+        public static void setUserImage(String thumb_image, Context ctx){
+            CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_image);
+            Picasso.with(ctx).load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
         }
     }
 }
