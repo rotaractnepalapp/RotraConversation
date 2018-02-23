@@ -20,4 +20,6 @@
     <string name="all_users">All users</string>
     <string name="current_user_status">Current User Status</string>
     <string name="total_friends">Total friends</string>
+    <string name="send_friend_request">Send Friend Request</string>
+    <string name="decline_friend_request">Decline Friend Request</string>
 </resources>

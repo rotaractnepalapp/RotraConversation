@@ -48,12 +48,24 @@
         android:textColor="@color/colorSecondaryText"/>
     <Button
         android:id="@+id/sendRequest_btn"
-        android:layout_width="220dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Colored"
         android:backgroundTint="#8bc34a"
         android:layout_marginTop="10dp"
-        android:text="Send Friend Request"
+        android:text="@string/send_friend_request"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textStyle="bold|italic"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/declineRequest_btn"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:backgroundTint="#f44336"
+        android:layout_marginTop="10dp"
+        android:text="@string/decline_friend_request"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textStyle="bold|italic"
