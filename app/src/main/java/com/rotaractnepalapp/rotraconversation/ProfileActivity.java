@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private ImageView mProfileImage;
     private TextView mProfileName, mProfileRIDNo, mProfileStatus, mProfileFriendsCount;
-    private Button mProfileSendRequestBtn;
+    private Button mProfileSendRequestBtn, mDeclineBtn;
 
     private DatabaseReference mUsersDatabase, mFriendRequestDatabase, mFriendDatabase;
     private FirebaseUser mCurrent_user;
@@ -56,6 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         mProfileStatus = (TextView) findViewById(R.id.profile_status);
         mProfileFriendsCount = (TextView) findViewById(R.id.profile_totalFriends);
         mProfileSendRequestBtn = (Button) findViewById(R.id.sendRequest_btn);
+        mDeclineBtn = (Button) findViewById(R.id.declineRequest_btn);
 
         mCurrent_state = "not_friends";
 
@@ -208,6 +209,25 @@ public class ProfileActivity extends AppCompatActivity {
                 }
 
                 //--------Unfriend state----------------------
+                if (mCurrent_state.equals("friends")){
+                    mFriendDatabase.child(mCurrent_user.getUid()).child(user_id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            mFriendRequestDatabase.child(user_id).child(mCurrent_user.getUid()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    mProfileSendRequestBtn.setEnabled(true);
+                                    mCurrent_state = "not_friends";
+                                    mProfileSendRequestBtn.setText("Send Friend Request");
+
+                                    mDeclineBtn.setVisibility(View.INVISIBLE);
+                                    mDeclineBtn.setEnabled(false);
+
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
 
