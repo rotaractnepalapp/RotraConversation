@@ -22,13 +22,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private ImageView mProfileImage;
     private TextView mProfileName, mProfileRIDNo, mProfileStatus, mProfileFriendsCount;
     private Button mProfileSendRequestBtn;
 
-    private DatabaseReference mUsersDatabase, mFriendRequestDatabase;
+    private DatabaseReference mUsersDatabase, mFriendRequestDatabase, mFriendDatabase;
     private FirebaseUser mCurrent_user;
 
     private ProgressDialog mProgressDialog;
@@ -44,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
         mFriendRequestDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
+        mFriendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
 
         mProfileImage = (ImageView) findViewById(R.id.profile_displayImage);
@@ -130,7 +134,6 @@ public class ProfileActivity extends AppCompatActivity {
                                         .setValue("received").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        mProfileSendRequestBtn.setEnabled(true);
                                         mCurrent_state = "req_sent";
                                         mProfileSendRequestBtn.setText("Cancel Friend Request");
 
@@ -140,6 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
                             }else {
                                 Toast.makeText(ProfileActivity.this,"Failed Sending Request.",Toast.LENGTH_LONG).show();
                             }
+                            mProfileSendRequestBtn.setEnabled(true);
                         }
                     });
                 }
@@ -160,6 +164,35 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+                //---------------Request Recieved State-----------------
+                if (mCurrent_state.equals("req_received")){
+                    final String currentDate = DateFormat.getDateTimeInstance().format(new Date());
+                    mFriendDatabase.child(mCurrent_user.getUid()).child(user_id).setValue(currentDate).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            mFriendDatabase.child(user_id).child(mCurrent_user.getUid()).setValue(currentDate).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    mFriendRequestDatabase.child(mCurrent_user.getUid()).child(user_id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            mFriendRequestDatabase.child(user_id).child(mCurrent_user.getUid()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    mProfileSendRequestBtn.setEnabled(true);
+                                                    mCurrent_state = "friends";
+                                                    mProfileSendRequestBtn.setText("Unriend this Person");
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+
             }
         });
 
