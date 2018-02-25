@@ -1,6 +1,7 @@
 package com.rotaractnepalapp.rotraconversation;
 
 import android.app.ProgressDialog;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -31,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView mProfileName, mProfileRIDNo, mProfileStatus, mProfileFriendsCount;
     private Button mProfileSendRequestBtn, mDeclineBtn;
 
-    private DatabaseReference mUsersDatabase, mFriendRequestDatabase, mFriendDatabase;
+    private DatabaseReference mUsersDatabase, mFriendRequestDatabase, mFriendDatabase, mNotificationDatabase;
     private FirebaseUser mCurrent_user;
 
     private ProgressDialog mProgressDialog;
@@ -48,7 +50,9 @@ public class ProfileActivity extends AppCompatActivity {
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
         mFriendRequestDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
         mFriendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
+        mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child("notifications");
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         mProfileImage = (ImageView) findViewById(R.id.profile_displayImage);
         mProfileName = (TextView) findViewById(R.id.profile_displayName);
@@ -158,11 +162,22 @@ public class ProfileActivity extends AppCompatActivity {
                                         .setValue("received").addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        mCurrent_state = "req_sent";
-                                        mProfileSendRequestBtn.setText("Cancel Friend Request");
 
-                                        mDeclineBtn.setVisibility(View.INVISIBLE);
-                                        mDeclineBtn.setEnabled(false);
+                                        HashMap<String, String> notificationData = new HashMap<>();
+                                        notificationData.put("from", mCurrent_user.getUid());
+                                        notificationData.put("type", "request");
+
+
+                                        mNotificationDatabase.child(user_id).push().setValue(notificationData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                mCurrent_state = "req_sent";
+                                                mProfileSendRequestBtn.setText("Cancel Friend Request");
+
+                                                mDeclineBtn.setVisibility(View.INVISIBLE);
+                                                mDeclineBtn.setEnabled(false);
+                                            }
+                                        });
 
                                         //Toast.makeText(ProfileActivity.this,"Request sent Successfully.",Toast.LENGTH_LONG).show();
                                     }
