@@ -13,12 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 
@@ -30,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressDialog mRegProgress;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase, mUserDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
         rtoolbar = (Toolbar) findViewById(R.id.register_toolbar);
         createBtn = (Button) findViewById(R.id.reg_create_btn);
         createBtn.setPaintFlags(createBtn.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
         //Toolbar set
         setSupportActionBar(rtoolbar);
@@ -98,11 +102,20 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 mRegProgress.dismiss();
-                                Toast.makeText(RegisterActivity.this,"Sucessful Register",Toast.LENGTH_LONG).show();
-                                Intent mainIntent = new Intent(RegisterActivity.this,MainActivity.class);
-                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(mainIntent);
-                                finish();
+
+                                String current_user_id = mAuth.getCurrentUser().getUid();
+                                String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+                                mUserDatabase.child(current_user_id).child("device_token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        Toast.makeText(RegisterActivity.this,"Sucessful Register",Toast.LENGTH_LONG).show();
+                                        Intent mainIntent = new Intent(RegisterActivity.this,MainActivity.class);
+                                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(mainIntent);
+                                        finish();
+                                    }
+                                });
                             }
                         }
                     });
