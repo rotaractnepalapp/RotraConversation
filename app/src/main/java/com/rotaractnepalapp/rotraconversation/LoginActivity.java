@@ -12,9 +12,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog mloginProgress;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mUserDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         loginEmail = (EditText) findViewById(R.id.login_email);
         loginPassword = (EditText) findViewById(R.id.login_password);
         loginBtn = (Button) findViewById(R.id.login_btn);
+
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
         //set login toolbar
         setSupportActionBar(ltoolbar);
@@ -68,11 +75,20 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     mloginProgress.dismiss();
-                    Toast.makeText(LoginActivity.this,"Sucessful LogIn",Toast.LENGTH_LONG).show();
-                    Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(mainIntent);
-                    finish();
+
+                    String current_user_id = mAuth.getCurrentUser().getUid();
+                    String deviceToken = FirebaseInstanceId.getInstance().getToken();
+
+                    mUserDatabase.child(current_user_id).child("device_token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(LoginActivity.this,"Sucessful LogIn",Toast.LENGTH_LONG).show();
+                            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(mainIntent);
+                            finish();
+                        }
+                    });
                 }else {
                     mloginProgress.hide();
                     Toast.makeText(LoginActivity.this,"Cannot Sign In Please Check your from and try it",Toast.LENGTH_LONG).show();
