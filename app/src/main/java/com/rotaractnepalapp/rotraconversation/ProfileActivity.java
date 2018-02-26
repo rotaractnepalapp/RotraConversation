@@ -27,9 +27,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class ProfileActivity extends AppCompatActivity {
 
-    private ImageView mProfileImage;
+    private CircleImageView mProfileImage;
     private TextView mProfileName, mProfileRIDNo, mProfileStatus, mProfileFriendsCount;
     private Button mProfileSendRequestBtn, mDeclineBtn;
 
@@ -54,7 +56,7 @@ public class ProfileActivity extends AppCompatActivity {
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
 
 
-        mProfileImage = (ImageView) findViewById(R.id.profile_displayImage);
+        mProfileImage = (CircleImageView) findViewById(R.id.profile_displayImage);
         mProfileName = (TextView) findViewById(R.id.profile_displayName);
         mProfileRIDNo = (TextView) findViewById(R.id.profile_ridno);
         mProfileStatus = (TextView) findViewById(R.id.profile_status);
