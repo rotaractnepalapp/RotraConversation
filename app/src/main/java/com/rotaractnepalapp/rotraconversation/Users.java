@@ -10,17 +10,23 @@ public class Users {
     public String status;
     public String image;
     public String thumb_image;
+    public String address;
+    public String contactno;
+    public String email;
 
     public Users(){
 
     }
 
-    public Users(String name, String ridno, String status, String image, String thumb_image) {
+    public Users(String name, String ridno, String status, String image, String thumb_image, String address, String contactno, String email) {
         this.name = name;
         this.ridno = ridno;
         this.status = status;
         this.image = image;
         this.thumb_image = thumb_image;
+        this.address = address;
+        this.contactno = contactno;
+        this.email = email;
     }
 
     public String getName() {
@@ -61,5 +67,29 @@ public class Users {
 
     public void setThumb_image(String thumb_image) {
         this.thumb_image = thumb_image;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getContactno() {
+        return contactno;
+    }
+
+    public void setContactno(String contactno) {
+        this.contactno = contactno;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                     HashMap<String, String> userMap = new HashMap<>();
                     userMap.put("name", display_name);
                     userMap.put("ridno", ridno);
-                    userMap.put("status", "Hi there I'm using Rotra Conversation App.");
+                    userMap.put("status", "Rotra Conversation App.");
                     userMap.put("image", "default");
                     userMap.put("thumb_image", "default");
 

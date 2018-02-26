@@ -13,7 +13,7 @@
     <string name="login_your_account">Login Your Account</string>
     <string name="log_in">Log In</string>
     <string name="account_setting">Account Setting</string>
-    <string name="default_status">RotraConversation</string>
+    <string name="default_status">Rotra Conversation App</string>
     <string name="change_an_image">Change an Image</string>
     <string name="type_your_status">Type your status</string>
     <string name="update_status">Update Status</string>
@@ -27,4 +27,8 @@
     <string name="friends">Friends</string>
     <string name="address">Address</string>
     <string name="change_information">Change Information</string>
+    <string name="enter_your_address">Enter your Address</string>
+    <string name="enter_your_contact_no">Enter your Contact no</string>
+    <string name="enter_your_email_id">Enter your Email ID</string>
+    <string name="update_information">Update Information</string>
 </resources>

@@ -50,6 +50,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CircleImageView mImage;
     private TextView mName, mRIDNo, mStatus;
     private ImageView mImageBtn, mStatusBtn;
+    private Button mInformationBtn;
 
     private static final int GALLERY_PICK = 1;
 
@@ -70,6 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         mStatusBtn = (ImageView) findViewById(R.id.setting_status_btn);
         mImageBtn = (ImageView) findViewById(R.id.setting_image_btn);
+        mInformationBtn = (Button) findViewById(R.id.setting_information_btn);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -140,6 +142,14 @@ public class SettingsActivity extends AppCompatActivity {
 
                 startActivityForResult(Intent.createChooser(gallaryIntent, "SELECT IMAGE"),GALLERY_PICK);
 
+            }
+        });
+
+        mInformationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent informationIntent = new Intent(SettingsActivity.this,UserInformationActivity.class);
+                startActivity(informationIntent);
             }
         });
     }
