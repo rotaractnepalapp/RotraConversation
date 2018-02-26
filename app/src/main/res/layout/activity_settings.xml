@@ -17,69 +17,133 @@
         app:civ_circle_background_color="@android:color/white"
         android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"/>
+    <ImageView
+        android:id="@+id/setting_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/camera"
+        android:layout_alignEnd="@id/setting_image"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:layout_alignRight="@id/setting_image" />
     <TextView
         android:id="@+id/setting_display_name"
         android:layout_below="@id/setting_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:maxLines="1"
         android:maxLength="21"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:text="@string/display_name"/>
     <TextView
         android:id="@+id/setting_ridno"
         android:layout_below="@id/setting_display_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:text="@string/r_i_district_no"/>
-    <TextView
-        android:id="@+id/setting_status"
-        android:layout_below="@id/setting_ridno"
+    <TableLayout
+        android:id="@+id/userStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:maxLines="1"
-        android:maxLength="40"
-        android:textStyle="normal"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        android:text="@string/default_status"/>
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_below="@id/setting_ridno"
+        android:layout_centerHorizontal="true">
+        <TableRow>
+            <ImageView
+                android:id="@+id/setting_status_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/edittext"/>
+            <TextView
+                android:id="@+id/setting_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:maxLength="32"
+                android:textStyle="normal"
+                android:layout_marginLeft="5dp"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:text="@string/default_status"/>
+        </TableRow>
+    </TableLayout>
+    <TableLayout
+        android:id="@+id/userInfo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/setting_status"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/setting_image_btn"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/change_an_image"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-        <Button
-            android:id="@+id/setting_status_btn"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:backgroundTint="@android:color/white"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Change Status"
-            android:textColor="@color/colorAccent"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:layout_below="@id/userStatus"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="60dp">
+        <TableRow android:layout_marginLeft="25dp"
+            android:layout_marginBottom="10dp">
+            <ImageView
+                android:layout_height="22dp"
+                android:layout_width="22dp"
+                android:src="@drawable/address"/>
+            <TextView
+                android:id="@+id/userAddressDisplay"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="bottom"
+                android:text="@string/address"/>
+        </TableRow>
+        <TableRow android:layout_marginLeft="25dp"
+            android:layout_marginBottom="10dp">
+            <ImageView
+                android:layout_height="22dp"
+                android:layout_width="22dp"
+                android:src="@drawable/contact"
+                android:tint="@android:color/white"/>
+            <TextView
+                android:id="@+id/userContactDisplay"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="bottom"
+                android:text="@string/contact_no"/>
+        </TableRow>
+        <TableRow android:layout_marginLeft="25dp"
+            android:layout_marginBottom="10dp">
+            <ImageView
+                android:layout_height="22dp"
+                android:layout_width="22dp"
+                android:src="@drawable/email"
+                android:tint="@android:color/white"/>
+            <TextView
+                android:id="@+id/userEmailIDDisplay"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="bottom"
+                android:text="@string/email"/>
+        </TableRow>
+    </TableLayout>
+    <Button
+        android:id="@+id/setting_information_btn"
+        android:layout_below="@id/userInfo"
+        android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@drawable/rectangle_broder"
+        android:backgroundTint="@color/green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_information"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold" />
 </RelativeLayout>

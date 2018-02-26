@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
     //for layout
     private CircleImageView mImage;
     private TextView mName, mRIDNo, mStatus;
-    private Button mStatusBtn, mImageBtn;
+    private ImageView mImageBtn, mStatusBtn;
 
     private static final int GALLERY_PICK = 1;
 
@@ -67,8 +68,8 @@ public class SettingsActivity extends AppCompatActivity {
         mRIDNo = (TextView) findViewById(R.id.setting_ridno);
         mStatus = (TextView) findViewById(R.id.setting_status);
 
-        mStatusBtn = (Button) findViewById(R.id.setting_status_btn);
-        mImageBtn = (Button) findViewById(R.id.setting_image_btn);
+        mStatusBtn = (ImageView) findViewById(R.id.setting_status_btn);
+        mImageBtn = (ImageView) findViewById(R.id.setting_image_btn);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
