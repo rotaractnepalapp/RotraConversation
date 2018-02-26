@@ -19,7 +19,11 @@
     <string name="update_status">Update Status</string>
     <string name="all_users">All users</string>
     <string name="current_user_status">Current User Status</string>
-    <string name="total_friends">Total friends</string>
+    <string name="total_friends">Total Friends</string>
     <string name="send_friend_request">Send Friend Request</string>
     <string name="decline_friend_request">Decline Friend Request</string>
+    <string name="contact_no">Contact No</string>
+    <string name="mutual_friends">Mutual Friends</string>
+    <string name="friends">Friends</string>
+    <string name="address">Address</string>
 </resources>

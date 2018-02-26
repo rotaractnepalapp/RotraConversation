@@ -60,11 +60,105 @@
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:textSize="16sp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/colorSecondaryText"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+                <ImageView
+                    android:id="@+id/friendIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/fren"
+                    android:tint="@color/colorPrimary"/>
+                <TextView
+                    android:id="@+id/totalFren"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/friends"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorSecondaryText"/>
+                <ImageView
+                    android:id="@+id/mutualfriendIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mutual_fren"
+                    android:layout_marginLeft="8dp"
+                    android:tint="@color/colorPrimary"/>
+                <TextView
+                    android:id="@+id/totalMutualFren"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mutual_friends"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/colorSecondaryText"/>
+            </LinearLayout>
         </android.support.v7.widget.CardView>
+        <TableLayout
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <TableRow android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp">
+                <ImageView
+                    android:id="@+id/addressIcon"
+                    android:src="@drawable/address"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:tint="@color/colorPrimary"/>
+                <TextView
+                    android:id="@+id/userAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/address"/>
+            </TableRow>
+            <TableRow android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp">
+                <ImageView
+                    android:id="@+id/contactIcon"
+                    android:src="@drawable/contact"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:tint="@color/colorPrimary"/>
+                <TextView
+                    android:id="@+id/userContact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/contact_no"/>
+            </TableRow>
+            <TableRow android:layout_marginLeft="25dp"
+                android:layout_marginBottom="10dp">
+                <ImageView
+                    android:id="@+id/emailIcon"
+                    android:src="@drawable/email"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:tint="@color/colorPrimary"/>
+                <TextView
+                    android:id="@+id/userEmailID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/email"/>
+            </TableRow>
+        </TableLayout>
         <Button
             android:id="@+id/sendRequest_btn"
-            android:layout_width="240dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.Colored"
             android:backgroundTint="#8bc34a"
@@ -73,10 +167,11 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textStyle="bold|italic"
-            android:textSize="20sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/rectangle_broder"/>
         <Button
             android:id="@+id/declineRequest_btn"
-            android:layout_width="240dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.AppCompat.Button.Colored"
             android:backgroundTint="#f44336"
@@ -85,6 +180,7 @@
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textStyle="bold|italic"
-            android:textSize="20sp"/>
+            android:textSize="16sp"
+            android:background="@drawable/rectangle_broder"/>
     </LinearLayout>
 </RelativeLayout>
