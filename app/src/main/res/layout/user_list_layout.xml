@@ -41,7 +41,7 @@
         android:layout_below="@id/user_single_status"
         android:layout_alignStart="@id/user_single_status"
         android:layout_alignLeft="@id/user_single_status"
-        android:text="@string/r_i_district_no"/>
+        android:text="@string/r_i_district_no_or_voter_id"/>
     <View
         android:layout_below="@id/user_single_image"
         android:layout_width="match_parent"

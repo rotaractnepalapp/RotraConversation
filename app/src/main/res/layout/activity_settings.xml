@@ -50,7 +50,7 @@
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-        android:text="@string/r_i_district_no"/>
+        android:text="@string/r_i_district_no_or_voter_id"/>
     <TableLayout
         android:id="@+id/userStatus"
         android:layout_width="wrap_content"

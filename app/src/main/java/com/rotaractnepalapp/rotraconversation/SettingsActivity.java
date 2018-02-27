@@ -48,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     //for layout
     private CircleImageView mImage;
-    private TextView mName, mRIDNo, mStatus;
+    private TextView mName, mRIDNo, mStatus, mAddress, mContactno, mEmail;
     private ImageView mImageBtn, mStatusBtn;
     private Button mInformationBtn;
 
@@ -68,6 +68,9 @@ public class SettingsActivity extends AppCompatActivity {
         mName = (TextView) findViewById(R.id.setting_display_name);
         mRIDNo = (TextView) findViewById(R.id.setting_ridno);
         mStatus = (TextView) findViewById(R.id.setting_status);
+        mAddress = (TextView) findViewById(R.id.userAddressDisplay);
+        mContactno = (TextView) findViewById(R.id.userContactDisplay);
+        mEmail = (TextView) findViewById(R.id.userEmailIDDisplay);
 
         mStatusBtn = (ImageView) findViewById(R.id.setting_status_btn);
         mImageBtn = (ImageView) findViewById(R.id.setting_image_btn);
@@ -89,11 +92,17 @@ public class SettingsActivity extends AppCompatActivity {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String ridno = dataSnapshot.child("ridno").getValue().toString();
                 String status = dataSnapshot.child("status").getValue().toString();
+                String address = dataSnapshot.child("address").getValue().toString();
+                String contactno = dataSnapshot.child("contactno").getValue().toString();
+                String email = dataSnapshot.child("email").getValue().toString();
 
                 //to change data in layout
                 mName.setText(name);
                 mRIDNo.setText(ridno);
                 mStatus.setText(status);
+                mAddress.setText(address);
+                mContactno.setText(contactno);
+                mEmail.setText(email);
 
                 if (!image.equals("default")){
                     //Picasso.with(SettingsActivity.this).load(image).placeholder(R.drawable.default_avatar).into(mImage);
@@ -148,8 +157,8 @@ public class SettingsActivity extends AppCompatActivity {
         mInformationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent informationIntent = new Intent(SettingsActivity.this,UserInformationActivity.class);
-                startActivity(informationIntent);
+                /*Intent informationIntent = new Intent(SettingsActivity.this,UserInformationActivity.class);
+                startActivity(informationIntent);*/
             }
         });
     }

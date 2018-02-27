@@ -94,8 +94,12 @@ public class RegisterActivity extends AppCompatActivity {
                     userMap.put("name", display_name);
                     userMap.put("ridno", ridno);
                     userMap.put("status", "Rotra Conversation App.");
+                    userMap.put("address", "Address");
+                    userMap.put("contactno", "Contact No");
+                    userMap.put("email", "Email ID");
                     userMap.put("image", "default");
                     userMap.put("thumb_image", "default");
+
 
                     mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
