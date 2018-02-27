@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private CircleImageView mProfileImage;
     private TextView mProfileName, mProfileRIDNo, mProfileStatus, mProfileFriendsCount, mProfileAddress;
-    private TextView mProfileContactNo;
+    private TextView mProfileContactNo, mProfileEmailID;
     private Button mProfileSendRequestBtn, mDeclineBtn;
 
     private DatabaseReference mUsersDatabase, mFriendRequestDatabase, mFriendDatabase, mNotificationDatabase;
@@ -64,6 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
         mProfileFriendsCount = (TextView) findViewById(R.id.profile_totalFriends);
         mProfileAddress = (TextView) findViewById(R.id.userAddress);
         mProfileContactNo = (TextView) findViewById(R.id.userContact);
+        mProfileEmailID = (TextView) findViewById(R.id.userEmailID);
         mProfileSendRequestBtn = (Button) findViewById(R.id.sendRequest_btn);
         mDeclineBtn = (Button) findViewById(R.id.declineRequest_btn);
 
@@ -85,12 +86,14 @@ public class ProfileActivity extends AppCompatActivity {
                 String image = dataSnapshot.child("image").getValue().toString();
                 String address = dataSnapshot.child("address").getValue().toString();
                 String contactno = dataSnapshot.child("contactno").getValue().toString();
+                String email = dataSnapshot.child("email").getValue().toString();
 
                 mProfileName.setText(display_name);
                 mProfileRIDNo.setText(ridno);
                 mProfileStatus.setText(status);
                 mProfileAddress.setText(address);
                 mProfileContactNo.setText(contactno);
+                mProfileEmailID.setText(email);
 
                 Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.default_avatar).into(mProfileImage);
 

@@ -33,4 +33,6 @@
     <string name="update_information">Update Information</string>
     <string name="type_your_address">Type your Address</string>
     <string name="update_address">Update Address</string>
+    <string name="update_contact_no">Update Contact No</string>
+    <string name="update_email_id">Update Email ID</string>
 </resources>

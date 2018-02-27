@@ -17,14 +17,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ContactNoActivity extends AppCompatActivity {
+public class EmailIdActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
-    private TextView mContactNo;
-    private Button mSaveContactNoBtn;
+    private TextView mEmailID;
+    private Button mSaveEmailIDBtn;
 
     //firebase
-    private DatabaseReference mContactNoDatabase;
+    private DatabaseReference mEmailIDDatabase;
     private FirebaseUser mCurrentUser;
 
     //progress dialog
@@ -33,39 +33,39 @@ public class ContactNoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_no);
+        setContentView(R.layout.activity_email_id);
 
         //database
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
 
-        mContactNoDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(current_uid);
+        mEmailIDDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(current_uid);
 
-        mToolbar = (Toolbar) findViewById(R.id.contactno_appBar);
+        mToolbar = (Toolbar) findViewById(R.id.emailid_appBar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Account Contact No");
+        getSupportActionBar().setTitle("Account Email ID");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String contactno_value = getIntent().getStringExtra("contactno");
+        String contactno_value = getIntent().getStringExtra("email");
 
-        mContactNo = (TextView) findViewById(R.id.contactno_input);
-        mSaveContactNoBtn = (Button) findViewById(R.id.contactno_save_btn);
+        mEmailID = (TextView) findViewById(R.id.emailid_input);
+        mSaveEmailIDBtn = (Button) findViewById(R.id.emailid_save_btn);
 
-        mContactNo.getEditableText().toString();
-        mContactNo.setText(contactno_value);
+        mEmailID.getEditableText().toString();
+        mEmailID.setText(contactno_value);
 
-        mSaveContactNoBtn.setOnClickListener(new View.OnClickListener() {
+        mSaveEmailIDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //progress
-                mProgress = new ProgressDialog(ContactNoActivity.this);
+                mProgress = new ProgressDialog(EmailIdActivity.this);
                 mProgress.setTitle("Saving Changes");
-                mProgress.setMessage("Please wait while we update your Contact no.");
+                mProgress.setMessage("Please wait while we update your email id.");
                 mProgress.show();
 
-                String contactno = mContactNo.getEditableText().toString();
-                mContactNoDatabase.child("contactno").setValue(contactno).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String email = mEmailID.getEditableText().toString();
+                mEmailIDDatabase.child("email").setValue(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){

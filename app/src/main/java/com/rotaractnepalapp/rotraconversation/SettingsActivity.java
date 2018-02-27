@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
     //for layout
     private CircleImageView mImage;
     private TextView mName, mRIDNo, mStatus, mAddress, mContactno, mEmail;
-    private ImageView mImageBtn, mStatusBtn, mAddressBtn, mContactNoBtn;
+    private ImageView mImageBtn, mStatusBtn, mAddressBtn, mContactNoBtn, mEmailIDBtn;
 
     private static final int GALLERY_PICK = 1;
 
@@ -75,6 +75,7 @@ public class SettingsActivity extends AppCompatActivity {
         mImageBtn = (ImageView) findViewById(R.id.setting_image_btn);
         mAddressBtn = (ImageView) findViewById(R.id.setting_address_btn);
         mContactNoBtn = (ImageView) findViewById(R.id.setting_contactno_btn);
+        mEmailIDBtn = (ImageView) findViewById(R.id.setting_emailid_btn);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -174,6 +175,18 @@ public class SettingsActivity extends AppCompatActivity {
 
                 Intent addressIntent = new Intent(SettingsActivity.this,ContactNoActivity.class);
                 addressIntent.putExtra("contactno", contactno_value);
+                startActivity(addressIntent);
+            }
+        });
+
+        mEmailIDBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String emailid_value = mEmail.getText().toString();
+
+                Intent addressIntent = new Intent(SettingsActivity.this,EmailIdActivity.class);
+                addressIntent.putExtra("email", emailid_value);
                 startActivity(addressIntent);
             }
         });

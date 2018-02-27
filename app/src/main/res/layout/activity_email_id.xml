@@ -20,14 +20,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="8dp">
-            <include layout="@layout/app_bar_layout" android:id="@+id/contactno_appBar"/>
+            <include layout="@layout/app_bar_layout" android:id="@+id/emailid_appBar"/>
             <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
-                android:id="@+id/contactno_input"
+                android:id="@+id/emailid_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Type your Contact No."
-                android:maxLength="21"
-                app:met_maxCharacters="21"
+                android:maxLength="32"
+                app:met_maxCharacters="32"
                 android:textStyle="bold"
                 android:inputType="text"
                 android:layout_marginLeft="5dp"
@@ -40,12 +40,12 @@
                 app:met_singleLineEllipsis="true"
                 android:layout_marginTop="5dp" />
             <Button
-                android:id="@+id/contactno_save_btn"
+                android:id="@+id/emailid_save_btn"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_gravity="right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/update_contact_no"
+                android:text="@string/update_email_id"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 android:textStyle="bold"
