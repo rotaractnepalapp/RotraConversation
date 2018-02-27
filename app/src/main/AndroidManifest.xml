@@ -38,7 +38,10 @@
             android:name=".UsersActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".AddressActivity"
+        <activity
+            android:name=".AddressActivity"
+            android:parentActivityName=".SettingsActivity" />
+        <activity android:name=".ContactNoActivity"
             android:parentActivityName=".SettingsActivity"></activity>
     </application>
 

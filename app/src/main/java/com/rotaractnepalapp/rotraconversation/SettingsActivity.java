@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
     //for layout
     private CircleImageView mImage;
     private TextView mName, mRIDNo, mStatus, mAddress, mContactno, mEmail;
-    private ImageView mImageBtn, mStatusBtn, mAddressBtn;
+    private ImageView mImageBtn, mStatusBtn, mAddressBtn, mContactNoBtn;
 
     private static final int GALLERY_PICK = 1;
 
@@ -74,6 +74,7 @@ public class SettingsActivity extends AppCompatActivity {
         mStatusBtn = (ImageView) findViewById(R.id.setting_status_btn);
         mImageBtn = (ImageView) findViewById(R.id.setting_image_btn);
         mAddressBtn = (ImageView) findViewById(R.id.setting_address_btn);
+        mContactNoBtn = (ImageView) findViewById(R.id.setting_contactno_btn);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -161,6 +162,18 @@ public class SettingsActivity extends AppCompatActivity {
 
                 Intent addressIntent = new Intent(SettingsActivity.this,AddressActivity.class);
                 addressIntent.putExtra("address", address_value);
+                startActivity(addressIntent);
+            }
+        });
+
+        mContactNoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String contactno_value = mContactno.getText().toString();
+
+                Intent addressIntent = new Intent(SettingsActivity.this,ContactNoActivity.class);
+                addressIntent.putExtra("contactno", contactno_value);
                 startActivity(addressIntent);
             }
         });

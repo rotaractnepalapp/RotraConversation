@@ -17,14 +17,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddressActivity extends AppCompatActivity {
+public class ContactNoActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
-    private TextView mAddress;
-    private Button mSaveAddressBtn;
+    private TextView mContactNo;
+    private Button mSaveContactNoBtn;
 
     //firebase
-    private DatabaseReference mAddressDatabase;
+    private DatabaseReference mContactNoDatabase;
     private FirebaseUser mCurrentUser;
 
     //progress dialog
@@ -33,39 +33,39 @@ public class AddressActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address);
+        setContentView(R.layout.activity_contact_no);
 
         //database
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
         String current_uid = mCurrentUser.getUid();
 
-        mAddressDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(current_uid);
+        mContactNoDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(current_uid);
 
-        mToolbar = (Toolbar) findViewById(R.id.address_appBar);
+        mToolbar = (Toolbar) findViewById(R.id.contactno_appBar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Account Address");
+        getSupportActionBar().setTitle("Account Contact No");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String address_value = getIntent().getStringExtra("address");
+        String contactno_value = getIntent().getStringExtra("contactno");
 
-        mAddress = (TextView) findViewById(R.id.address_input);
-        mSaveAddressBtn = (Button) findViewById(R.id.address_save_btn);
+        mContactNo = (TextView) findViewById(R.id.contactno_input);
+        mSaveContactNoBtn = (Button) findViewById(R.id.contactno_save_btn);
 
-        mAddress.getEditableText().toString();
-        mAddress.setText(address_value);
+        mContactNo.getEditableText().toString();
+        mContactNo.setText(contactno_value);
 
-        mSaveAddressBtn.setOnClickListener(new View.OnClickListener() {
+        mSaveContactNoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //progress
-                mProgress = new ProgressDialog(AddressActivity.this);
+                mProgress = new ProgressDialog(ContactNoActivity.this);
                 mProgress.setTitle("Saving Changes");
                 mProgress.setMessage("Please wait while we update your status.");
                 mProgress.show();
 
-                String address = mAddress.getEditableText().toString();
-                mAddressDatabase.child("address").setValue(address).addOnCompleteListener(new OnCompleteListener<Void>() {
+                String contactno = mContactNo.getEditableText().toString();
+                mContactNoDatabase.child("contactno").setValue(contactno).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
