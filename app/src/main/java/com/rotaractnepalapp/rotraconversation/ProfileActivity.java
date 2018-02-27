@@ -32,7 +32,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileActivity extends AppCompatActivity {
 
     private CircleImageView mProfileImage;
-    private TextView mProfileName, mProfileRIDNo, mProfileStatus, mProfileFriendsCount;
+    private TextView mProfileName, mProfileRIDNo, mProfileStatus, mProfileFriendsCount, mProfileAddress;
     private Button mProfileSendRequestBtn, mDeclineBtn;
 
     private DatabaseReference mUsersDatabase, mFriendRequestDatabase, mFriendDatabase, mNotificationDatabase;
@@ -61,6 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
         mProfileRIDNo = (TextView) findViewById(R.id.profile_ridno);
         mProfileStatus = (TextView) findViewById(R.id.profile_status);
         mProfileFriendsCount = (TextView) findViewById(R.id.profile_totalFriends);
+        mProfileAddress = (TextView) findViewById(R.id.userAddress);
         mProfileSendRequestBtn = (Button) findViewById(R.id.sendRequest_btn);
         mDeclineBtn = (Button) findViewById(R.id.declineRequest_btn);
 
@@ -80,10 +81,12 @@ public class ProfileActivity extends AppCompatActivity {
                 String ridno = dataSnapshot.child("ridno").getValue().toString();
                 String status = dataSnapshot.child("status").getValue().toString();
                 String image = dataSnapshot.child("image").getValue().toString();
+                String address = dataSnapshot.child("address").getValue().toString();
 
                 mProfileName.setText(display_name);
                 mProfileRIDNo.setText(ridno);
                 mProfileStatus.setText(status);
+                mProfileAddress.setText(address);
 
                 Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.default_avatar).into(mProfileImage);
 

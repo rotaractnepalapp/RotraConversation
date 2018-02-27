@@ -49,8 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
     //for layout
     private CircleImageView mImage;
     private TextView mName, mRIDNo, mStatus, mAddress, mContactno, mEmail;
-    private ImageView mImageBtn, mStatusBtn;
-    private Button mInformationBtn;
+    private ImageView mImageBtn, mStatusBtn, mAddressBtn;
 
     private static final int GALLERY_PICK = 1;
 
@@ -74,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         mStatusBtn = (ImageView) findViewById(R.id.setting_status_btn);
         mImageBtn = (ImageView) findViewById(R.id.setting_image_btn);
-        mInformationBtn = (Button) findViewById(R.id.setting_information_btn);
+        mAddressBtn = (ImageView) findViewById(R.id.setting_address_btn);
 
         mImageStorage = FirebaseStorage.getInstance().getReference();
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -154,11 +153,15 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        mInformationBtn.setOnClickListener(new View.OnClickListener() {
+        mAddressBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent informationIntent = new Intent(SettingsActivity.this,UserInformationActivity.class);
-                startActivity(informationIntent);*/
+
+                String address_value = mAddress.getText().toString();
+
+                Intent addressIntent = new Intent(SettingsActivity.this,AddressActivity.class);
+                addressIntent.putExtra("address", address_value);
+                startActivity(addressIntent);
             }
         });
     }

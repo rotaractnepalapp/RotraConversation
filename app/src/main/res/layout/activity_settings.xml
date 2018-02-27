@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/setting_ridno"
         android:layout_centerHorizontal="true">
-        <TableRow>
+        <TableRow android:layout_marginTop="15dp">
             <ImageView
                 android:id="@+id/setting_status_btn"
                 android:layout_width="25dp"
@@ -83,26 +83,36 @@
         android:layout_below="@id/userStatus"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="60dp">
-        <TableRow android:layout_marginLeft="25dp"
-            android:layout_marginBottom="10dp">
+        <TableRow android:layout_marginTop="15dp">
             <ImageView
-                android:layout_height="22dp"
-                android:layout_width="22dp"
+                android:id="@+id/setting_address_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/edittext"/>
+            <ImageView
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:layout_marginLeft="10dp"
                 android:src="@drawable/address"/>
             <TextView
                 android:id="@+id/userAddressDisplay"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="@android:color/white"
-                android:layout_marginLeft="8dp"
-                android:layout_gravity="bottom"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10dp"
                 android:text="@string/address"/>
         </TableRow>
-        <TableRow android:layout_marginLeft="25dp"
-            android:layout_marginBottom="10dp">
+        <TableRow android:layout_marginTop="15dp">
             <ImageView
-                android:layout_height="22dp"
-                android:layout_width="22dp"
+                android:id="@+id/setting_contactno_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/edittext"/>
+            <ImageView
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:layout_marginLeft="10dp"
                 android:src="@drawable/contact"
                 android:tint="@android:color/white"/>
             <TextView
@@ -110,15 +120,20 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="@android:color/white"
-                android:layout_marginLeft="8dp"
-                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center|left"
                 android:text="@string/contact_no"/>
         </TableRow>
-        <TableRow android:layout_marginLeft="25dp"
-            android:layout_marginBottom="10dp">
+        <TableRow android:layout_marginTop="15dp">
             <ImageView
-                android:layout_height="22dp"
-                android:layout_width="22dp"
+                android:id="@+id/setting_emailid_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/edittext"/>
+            <ImageView
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:layout_marginLeft="10dp"
                 android:src="@drawable/email"
                 android:tint="@android:color/white"/>
             <TextView
@@ -126,24 +141,9 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="@android:color/white"
-                android:layout_marginLeft="8dp"
-                android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center|left"
                 android:text="@string/email"/>
         </TableRow>
     </TableLayout>
-    <Button
-        android:id="@+id/setting_information_btn"
-        android:layout_below="@id/userInfo"
-        android:layout_centerHorizontal="true"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:background="@drawable/rectangle_broder"
-        android:backgroundTint="@color/green"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/change_information"
-        android:textColor="@android:color/white"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:layout_marginTop="5dp"
-        android:textStyle="bold" />
 </RelativeLayout>
