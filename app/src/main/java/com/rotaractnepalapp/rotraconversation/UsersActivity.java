@@ -2,15 +2,19 @@ package com.rotaractnepalapp.rotraconversation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -47,16 +51,20 @@ public class UsersActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(
-
-                Users.class,
-                R.layout.user_list_layout,
-                UsersViewHolder.class,
-                mUserDatabase
-
-        ) {
+        FirebaseRecyclerOptions <Users> options = new FirebaseRecyclerOptions.Builder<Users>()
+                .setQuery(mUserDatabase,Users.class)
+                .build();
+        FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(options) {
+            @NonNull
             @Override
-            protected void populateViewHolder(UsersViewHolder viewHolder, Users model, int position) {
+            public UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.user_list_layout, parent, false);
+                return new UsersViewHolder(view);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull Users model) {
                 UsersViewHolder.setName(model.getName());
                 UsersViewHolder.setStatus(model.getStatus());
                 UsersViewHolder.setRIDNo(model.getRidno());
@@ -75,6 +83,7 @@ public class UsersActivity extends AppCompatActivity {
                     }
                 });
             }
+
         };
 
         mUsersList.setAdapter(firebaseRecyclerAdapter);
