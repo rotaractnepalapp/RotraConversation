@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "452086127397",
+    "firebase_url": "https://rotraconversation.firebaseio.com",
+    "project_id": "rotraconversation",
+    "storage_bucket": "rotraconversation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452086127397:android:c5b7508186b4a6cb",
+        "android_client_info": {
+          "package_name": "com.rotaractnepalapp.rotraconversation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452086127397-g31fat6hp2mudf6rim5q8jb8gnm8fsko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rotaractnepalapp.rotraconversation",
+            "certificate_hash": "05eea774bae20fd4999b741e7e02fee9a6e680c6"
+          }
+        },
+        {
+          "client_id": "452086127397-thk2acaoqlb3q9gnnon8pa8l3ef84p8k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rotaractnepalapp.rotraconversation",
+            "certificate_hash": "2ed8cf7d80b8a5851f81af183a404fa279f9821e"
+          }
+        },
+        {
+          "client_id": "452086127397-espbc93lpp4hm0ii4amg5cnvhd8qnqi0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rotaractnepalapp.rotraconversation",
+            "certificate_hash": "32430ff11e76ef8502ab8c030e3e7520af48bcae"
+          }
+        },
+        {
+          "client_id": "452086127397-c956gsq0emmj52nbqfilhg37r4ldhrqo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAyixHc7stG47gPq3m-eRMkcE1AMzxmng"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452086127397-c956gsq0emmj52nbqfilhg37r4ldhrqo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
