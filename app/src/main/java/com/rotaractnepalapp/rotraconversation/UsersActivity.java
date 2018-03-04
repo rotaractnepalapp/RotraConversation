@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -27,6 +28,8 @@ public class UsersActivity extends AppCompatActivity {
     private RecyclerView mUsersList;
 
     private DatabaseReference mUserDatabase;
+
+    private FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +47,10 @@ public class UsersActivity extends AppCompatActivity {
         mUsersList.setHasFixedSize(true);
         mUsersList.setLayoutManager(new LinearLayoutManager(this));
 
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
         FirebaseRecyclerOptions <Users> options = new FirebaseRecyclerOptions.Builder<Users>()
                 .setQuery(mUserDatabase,Users.class)
                 .build();
-        FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(options) {
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Users, UsersViewHolder>(options) {
             @NonNull
             @Override
             public UsersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,56 +61,66 @@ public class UsersActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull Users model) {
-                UsersViewHolder.setName(model.getName());
-                UsersViewHolder.setStatus(model.getStatus());
-                UsersViewHolder.setRIDNo(model.getRidno());
-                UsersViewHolder.setUserImage(model.getThumb_image(), getApplicationContext());
+                holder.setName(model.getName());
+                holder.setStatus(model.getStatus());
+                holder.setRIDNo(model.getRidno());
+                holder.setUserImage(model.getThumb_image(), getApplicationContext());
 
                 //to get key
                 final String user_id = getRef(position).getKey();
 
-                UsersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent profileIntent = new Intent(UsersActivity.this, ProfileActivity.class);
                         profileIntent.putExtra("user_id", user_id);
                         startActivity(profileIntent);
-
                     }
                 });
             }
-
         };
-
         mUsersList.setAdapter(firebaseRecyclerAdapter);
 
     }
 
-    //User list viewholder
-    public static class UsersViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseRecyclerAdapter.startListening();
+    }
 
-        static View mView;
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(firebaseRecyclerAdapter != null) {
+            firebaseRecyclerAdapter.stopListening();
+        }
+    }
+
+    //User list viewholder
+    public class UsersViewHolder extends RecyclerView.ViewHolder {
+
+        View mView;
         private CircleImageView mUserView;
 
         public UsersViewHolder(View itemView) {
             super(itemView);
-
             mView = itemView;
         }
 
-        public static void setName(String name){
+        public void setName(String name){
             TextView userNameView = (TextView) mView.findViewById(R.id.user_single_name);
             userNameView.setText(name);
         }
-        public static void setStatus(String status){
+        public void setStatus(String status){
             TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_status);
             userStatusView.setText(status);
         }
-        public static void setRIDNo(String ridno){
+        public void setRIDNo(String ridno){
             TextView userRIDNoView = (TextView) mView.findViewById(R.id.user_single_ridno);
             userRIDNoView.setText(ridno);
         }
-        public static void setUserImage(String thumb_image, Context ctx){
+        public void setUserImage(String thumb_image, Context ctx){
             CircleImageView userImageView = (CircleImageView) mView.findViewById(R.id.user_single_image);
             Picasso.with(ctx).load(thumb_image).placeholder(R.drawable.default_avatar).into(userImageView);
         }
