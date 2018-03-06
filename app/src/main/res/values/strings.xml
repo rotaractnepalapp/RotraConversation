@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RotraConversation</string>
     <string name="need_new_account">Need New Account ?</string>
-    <string name="r_i_district_no_or_voter_id"> R.I. Dist. No / Voter ID</string>
+    <string name="r_i_district_no_or_voter_id"> R.I. Dist. No / Voter ID / Citizenship ID</string>
     <string name="password"> Password</string>
     <string name="registration"><u>Registration</u></string>
     <string name="display_name"> Display Name</string>
@@ -35,4 +35,5 @@
     <string name="update_address">Update Address</string>
     <string name="update_contact_no">Update Contact No</string>
     <string name="update_email_id">Update Email ID</string>
+    <string name="note_guest_non_rotaractor_can_be_use_there_voter_id">Note : Guest non-rotaractor can be use there voter/citizenship ID</string>
 </resources>

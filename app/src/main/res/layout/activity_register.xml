@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="@color/colorAccent"
-                android:text="Note : Guest non-rotaractor can be use there voter ID"
+                android:text="@string/note_guest_non_rotaractor_can_be_use_there_voter_id"
                 android:textStyle="bold"
                 android:layout_margin="5dp"/>
             <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView
