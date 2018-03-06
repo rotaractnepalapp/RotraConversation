@@ -282,5 +282,32 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        mDeclineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map declineMap = new HashMap();
+
+                declineMap.put("Friend_req/" + mCurrent_user.getUid() + "/" + user_id, null);
+                declineMap.put("Friend_req/" + user_id + mCurrent_user.getUid(), null);
+
+                mRootRef.updateChildren(declineMap, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if (databaseError == null){
+                            mCurrent_state = "not_friends";
+                            mProfileSendRequestBtn.setText("Send Friend Request");
+
+                            mDeclineBtn.setVisibility(View.INVISIBLE);
+                            mDeclineBtn.setEnabled(false);
+                        }else {
+                            String error = databaseError.getMessage();
+                            Toast.makeText(ProfileActivity.this,error,Toast.LENGTH_LONG).show();
+                        }
+                        mProfileSendRequestBtn.setEnabled(true);
+                    }
+                });
+            }
+        });
+
     }
 }
