@@ -100,10 +100,17 @@ public class FriendsFragment extends Fragment {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         //Click event for each items
-                                        if(which == 0){
-                                            Intent profileIntent = new Intent(getContext(), ProfileActivity.class);
-                                            profileIntent.putExtra("user_id", list_user_id);
-                                            startActivity(profileIntent);
+                                        switch (which){
+                                            case 0:
+                                                Intent profileIntent = new Intent(getContext(), ProfileActivity.class);
+                                                profileIntent.putExtra("user_id", list_user_id);
+                                                startActivity(profileIntent);
+                                                break;
+                                            case 1:
+                                                Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                                chatIntent.putExtra("user_id", list_user_id);
+                                                startActivity(chatIntent);
+                                                break;
                                         }
                                     }
                                 });
