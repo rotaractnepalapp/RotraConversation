@@ -13,4 +13,5 @@
 
     <color name="red">#f44336</color>
     <color name="green">#8bc34a</color>
+    <color name="chat_bg">#e0e0e0</color>
 </resources>

@@ -4,7 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rotaractnepalapp.rotraconversation.ChatActivity">
+    tools:context="com.rotaractnepalapp.rotraconversation.ChatActivity"
+    android:background="@color/chat_bg">
     <include layout="@layout/app_bar_layout"
         android:id="@+id/chat_toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:background="@android:color/white"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/add"
+            android:layout_weight="1"
+            android:tint="@color/colorPrimaryDark"
+            android:alpha="0.5"
+            android:padding="1dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="Text View"
+            android:paddingBottom="12dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="16dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:src="@drawable/send"
+            android:tint="@color/colorPrimaryDark"
+            android:alpha="0.5"
+            android:padding="1dp"/>
+    </LinearLayout>
 </RelativeLayout>
