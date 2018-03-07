@@ -77,7 +77,7 @@ public class FriendsFragment extends Fragment {
                 mUserDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        String userName = dataSnapshot.child("name").getValue().toString();
+                        final String userName = dataSnapshot.child("name").getValue().toString();
                         String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
 
                         holder.setName(userName);
@@ -86,7 +86,7 @@ public class FriendsFragment extends Fragment {
                             Boolean userOnline = (boolean) dataSnapshot.child("online").getValue();
                             holder.setUserOnline(userOnline);
                         }
-                        holder.setRIDNo("Last message show here");
+                        holder.setRIDNo("");
 
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -109,6 +109,7 @@ public class FriendsFragment extends Fragment {
                                             case 1:
                                                 Intent chatIntent = new Intent(getContext(), ChatActivity.class);
                                                 chatIntent.putExtra("user_id", list_user_id);
+                                                chatIntent.putExtra("user_name", userName);
                                                 startActivity(chatIntent);
                                                 break;
                                         }

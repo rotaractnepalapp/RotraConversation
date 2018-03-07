@@ -59,7 +59,8 @@
         <activity
             android:name=".EmailIdActivity"
             android:parentActivityName=".SettingsActivity" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
