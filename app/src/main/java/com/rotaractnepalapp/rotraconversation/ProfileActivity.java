@@ -105,6 +105,12 @@ public class ProfileActivity extends AppCompatActivity {
 
                 Picasso.with(ProfileActivity.this).load(image).placeholder(R.drawable.default_avatar).into(mProfileImage);
 
+                //----------------To check own user profile
+                if (user_id.equals(mCurrent_user.getUid())){
+                    mProfileSendRequestBtn.setVisibility(View.INVISIBLE);
+                    mDeclineBtn.setVisibility(View.INVISIBLE);
+                }
+
                 //----------------Friends list / Request Feature
                 mFriendRequestDatabase.child(mCurrent_user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -169,7 +175,6 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 mProfileSendRequestBtn.setEnabled(false);
-
 
                 //----------------Not Friends State----------------
                 if (mCurrent_state.equals("not_friends")){
