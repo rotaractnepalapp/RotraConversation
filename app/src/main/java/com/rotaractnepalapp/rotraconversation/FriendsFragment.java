@@ -83,7 +83,7 @@ public class FriendsFragment extends Fragment {
                         holder.setName(userName);
                         holder.setUserImage(userThumb, getContext());
                         if (dataSnapshot.hasChild("online")){
-                            Boolean userOnline = (boolean) dataSnapshot.child("online").getValue();
+                            String userOnline = dataSnapshot.child("online").getValue().toString();
                             holder.setUserOnline(userOnline);
                         }
                         holder.setRIDNo("");
@@ -185,10 +185,10 @@ public class FriendsFragment extends Fragment {
             userRIDNoView.setText(ridno);
         }
 
-        public void setUserOnline(Boolean online_status){
+        public void setUserOnline(String online_status){
             ImageView userOnlineView = (ImageView) mView.findViewById(R.id.user_single_online_icon);
 
-            if (online_status.equals(true)){
+            if (online_status.equals("true")){
                 userOnlineView.setVisibility(View.VISIBLE);
             }else {
                 userOnlineView.setVisibility(View.INVISIBLE);
