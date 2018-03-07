@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -79,6 +80,10 @@ public class FriendsFragment extends Fragment {
 
                         holder.setName(userName);
                         holder.setUserImage(userThumb, getContext());
+                        if (dataSnapshot.hasChild("online")){
+                            Boolean userOnline = (boolean) dataSnapshot.child("online").getValue();
+                            holder.setUserOnline(userOnline);
+                        }
                         holder.setRIDNo("Last message show here");
                     }
 
@@ -144,6 +149,16 @@ public class FriendsFragment extends Fragment {
         public void setRIDNo(String ridno){
             TextView userRIDNoView = (TextView) mView.findViewById(R.id.user_single_ridno);
             userRIDNoView.setText(ridno);
+        }
+
+        public void setUserOnline(Boolean online_status){
+            ImageView userOnlineView = (ImageView) mView.findViewById(R.id.user_single_online_icon);
+
+            if (online_status.equals(true)){
+                userOnlineView.setVisibility(View.VISIBLE);
+            }else {
+                userOnlineView.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }
