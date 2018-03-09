@@ -5,16 +5,22 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -26,6 +32,9 @@ public class ChatActivity extends AppCompatActivity {
 
     private TextView mTitleView, mLastSeenView;
     private CircleImageView mProfileImage;
+
+    private FirebaseAuth mAuth;
+    private String mCurrentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,8 @@ public class ChatActivity extends AppCompatActivity {
         actionBar.setDisplayShowCustomEnabled(true);
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        mCurrentUserId = mAuth.getCurrentUser().getUid();
 
         mChatUser = getIntent().getStringExtra("user_id");
         String userName = getIntent().getStringExtra("user_name");
@@ -84,6 +95,33 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        mRootRef.child("chat").child(mCurrentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               if (!dataSnapshot.hasChild(mChatUser)){
+                   Map chatAddMap = new HashMap();
+                   chatAddMap.put("seen", false);
+                   chatAddMap.put("timestamp", ServerValue.TIMESTAMP);
 
+                   Map chatUserMap = new HashMap();
+                   chatUserMap.put("Chat/" + mCurrentUserId + "/" + mChatUser, chatAddMap);
+                   chatUserMap.put("Chat/" + mChatUser + "/" + mCurrentUserId, chatAddMap);
+
+                   mRootRef.updateChildren(chatUserMap, new DatabaseReference.CompletionListener() {
+                       @Override
+                       public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError != null){
+                                Log.d("CHAT_LOG", databaseError.getMessage().toString());
+                            }
+                       }
+                   });
+               }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
