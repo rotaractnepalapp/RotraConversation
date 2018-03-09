@@ -37,4 +37,5 @@
     <string name="update_email_id">Update Email ID</string>
     <string name="note_guest_non_rotaractor_can_be_use_there_voter_id">Note : Guest non-rotaractor can be use there voter/citizenship ID</string>
     <string name="last_seen">Last Seen</string>
+    <string name="type_your_message_here">Type your message here</string>
 </resources>

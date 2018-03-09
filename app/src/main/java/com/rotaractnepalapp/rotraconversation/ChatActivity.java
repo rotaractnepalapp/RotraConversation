@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -63,10 +64,16 @@ public class ChatActivity extends AppCompatActivity {
                 String online = dataSnapshot.child("online").getValue().toString();
                 String image = dataSnapshot.child("image").getValue().toString();
 
+
                 if (online.equals("true")){
                     mLastSeenView.setText("Online");
                 }else {
-                    mLastSeenView.setText(online);
+
+                    GetTimeAgo getTimeAgo = new GetTimeAgo();
+                    long lastTime = Long.parseLong(online);
+                    String lastSeenTime = getTimeAgo.getTimeAgo(lastTime, getApplicationContext());
+
+                    mLastSeenView.setText(lastSeenTime);
                 }
 
             }

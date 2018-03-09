@@ -71,14 +71,13 @@ public class FriendsFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull final FriendsViewHolder holder, int position, @NonNull Friends model) {
                 holder.setDate(model.getDate());
-
                 final String list_user_id = getRef(position).getKey();
 
                 mUserDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String userName = dataSnapshot.child("name").getValue().toString();
-                        String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
+                        final String userThumb = dataSnapshot.child("thumb_image").getValue().toString();
 
                         holder.setName(userName);
                         holder.setUserImage(userThumb, getContext());

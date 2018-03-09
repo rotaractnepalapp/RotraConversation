@@ -24,11 +24,11 @@
             android:tint="@color/colorPrimaryDark"
             android:alpha="0.5"
             android:padding="1dp"/>
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="8"
-            android:text="Text View"
+            android:hint="@string/type_your_message_here"
             android:paddingBottom="12dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
