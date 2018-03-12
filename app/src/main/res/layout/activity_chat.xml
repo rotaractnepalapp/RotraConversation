@@ -8,6 +8,17 @@
     android:background="@color/chat_bg">
     <include layout="@layout/app_bar_layout"
         android:id="@+id/chat_toolbar"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messages_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/chat_toolbar">
+
+    </android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -15,7 +26,8 @@
         android:orientation="horizontal"
         android:weightSum="10"
         android:background="@android:color/white"
-        android:gravity="center">
+        android:gravity="center"
+        android:id="@+id/linearLayout">
         <ImageButton
             android:id="@+id/chat_add_btn"
             android:layout_width="wrap_content"
