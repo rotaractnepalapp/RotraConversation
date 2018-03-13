@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <solid android:color="@color/colorPrimaryDark" />
+    <solid android:color="@color/colorMessageText" />
     <corners
-        android:bottomRightRadius="2dp"
-        android:topRightRadius="2dp"
-        android:topLeftRadius="2dp"
-        android:bottomLeftRadius="2dp"/>
+        android:bottomRightRadius="5dp"
+        android:topRightRadius="5dp"
+        android:topLeftRadius="5dp"
+        android:bottomLeftRadius="5dp"/>
 </shape>
